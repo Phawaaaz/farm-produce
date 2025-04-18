@@ -52,28 +52,28 @@ const dataObj = JSON.parse(data)
      
 const server = http.createServer((req, res)=>{
 
-    
-    // console.log(req.url);
+  const {query, pathName} = url.parse(req.url, true); 
+  // console.log(parsedU rl); // You can now see the parsed URL object
 
-    const pathName = req.url
+    // const pathName = req.url 
     // overview page
     if (pathName === '/' || pathName === '/overview') { 
       res.writeHead(200, { 'Content-Type': 'text/html' });
       const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('')
       const output = tempOverview.replace(/{%PRODUCTCARD%}/g, cardsHtml)
       res.end(output);
-      // res.end(tempOverview);
       } 
       // Product page
       else if (pathName === '/product') {
-        res.end(tempProduct); 
+        console.log(query);
+        res.end('THIS IS THE PRODUCT PAGE'); 
 
       }
-      // API  
+       // API  
       else if (pathName === '/api') { 
             res.writeHead(200, {'content-type':'application/json'} )
             res.end(dataObj)   
-      }
+      } 
       // Not found
       else {
         res.writeHead(404, { 
