@@ -60,8 +60,7 @@ console.log(slug);
 const server = http.createServer((req, res)=>{
 
   const { query, pathname } = url.parse(req.url, true);
-  // console.log(parsedU rl); // You can now see the parsed URL object
-
+  // console.log(parsedU rl); // You can now see the parsed URL object 
     // const pathName = req.url 
     // overview page
     if (pathname === '/' || pathname === '/overview') { 
